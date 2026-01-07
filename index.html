@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>G101 | تجربة الجيولوجيا الرقمية</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700;900&family=Changa:wght@500;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #3b82f6;
+            --accent: #f59e0b;
+            --bg-dark: #030712;
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: var(--bg-dark);
+            color: #f3f4f6;
+            overflow-x: hidden;
+        }
+
+        .font-title { font-family: 'Changa', sans-serif; }
+
+        /* Particles Background */
+        #particles-js {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        /* Progress Bar */
+        .progress-container {
+            position: fixed;
+            top: 0;
+            z-index: 100;
+            width: 100%;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.1);
+        }
+        .progress-bar {
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), #8b5cf6);
+            width: 0%;
+        }
+
+        /* Glass Card */
+        .glass {
+            background: rgba(31, 41, 55, 0.4);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .glass:hover {
+            border-color: var(--primary);
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Animated Text Gradient */
+        .text-gradient {
+            background: linear-gradient(90deg, #60a5fa, #f59e0b, #60a5fa);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shine 3s linear infinite;
+        }
+        @keyframes shine {
+            to { background-position: 200% center; }
+        }
+
+        /* Developer Section Glow */
+        .dev-glow {
+            position: relative;
+        }
+        .dev-glow::after {
+            content: '';
+            position: absolute;
+            inset: -5px;
+            background: linear-gradient(45deg, #3b82f6, #f59e0b, #3b82f6);
+            filter: blur(15px);
+            z-index: -1;
+            opacity: 0.3;
+            border-radius: inherit;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg-dark); }
+        ::-webkit-scrollbar-thumb { background: #1f2937; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--primary); }
+    </style>
+</head>
+<body>
+
+    <div id="particles-js"></div>
+    <div class="progress-container"><div class="progress-bar" id="myBar"></div></div>
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 px-6 py-4">
+        <div class="container mx-auto glass rounded-2xl px-6 py-3 flex justify-between items-center">
+            <div class="flex items-center gap-2">
+                <div class="w-8 h-8 bg-blue-600 rounded-lg animate-bounce"></div>
+                <span class="text-xl font-black font-title tracking-widest">G101 PRO</span>
+            </div>
+            <div class="hidden md:flex gap-8 font-bold">
+                <a href="#home" class="hover:text-blue-400 transition">الرئيسية</a>
+                <a href="#branches" class="hover:text-blue-400 transition">الأفرع</a>
+                <a href="#developer" class="text-amber-500 hover:text-white transition">المبرمج</a>
+            </div>
+            <button class="bg-blue-600 px-6 py-2 rounded-xl font-bold hover:bg-blue-700 transition shadow-lg shadow-blue-900/40">ابدأ الآن</button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex items-center pt-20 relative px-6">
+        <div class="container mx-auto grid lg:grid-cols-2 gap-12 items-center">
+            <div data-aos="fade-left" data-aos-duration="1000">
+                <span class="bg-blue-600/20 text-blue-400 px-4 py-1 rounded-full text-sm font-bold mb-6 inline-block border border-blue-600/30">المحاضرة الأولى</span>
+                <h1 class="text-6xl md:text-8xl font-black font-title mb-6 leading-tight">
+                    علم <br><span class="text-gradient">الأرض</span>
+                </h1>
+                <p class="text-xl text-gray-400 mb-10 max-w-lg leading-relaxed">
+                    استكشف أسرار كوكبنا من خلال بوابة تعليمية ذكية صممها وبرمجها <strong>إسماعيل سيد</strong> لزملائه في مقرر الجيولوجيا الطبيعية 101.
+                </p>
+                <div class="flex gap-4">
+                    <a href="#branches" class="bg-blue-600 p-4 rounded-2xl flex items-center gap-3 font-bold hover:bg-blue-700 transition group">
+                        استكشف الأفرع <i class="fa-solid fa-arrow-left group-hover:-translate-x-2 transition"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="relative flex justify-center" data-aos="zoom-in" data-aos-duration="1500">
+                <div class="absolute w-full h-full bg-blue-500/10 blur-[120px] rounded-full"></div>
+                <img src="https://cdn-icons-png.flaticon.com/512/2790/2790352.png" alt="Planet Earth" class="w-80 md:w-[500px] animate-[spin_20s_linear_infinite] drop-shadow-[0_0_50px_rgba(59,130,246,0.5)]">
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Dashboard -->
+    <section class="py-10 container mx-auto px-6 grid md:grid-cols-4 gap-6">
+        <div class="glass p-6 rounded-3xl text-center" data-aos="fade-up" data-aos-delay="100">
+            <div class="text-4xl font-black text-blue-500 mb-2">20</div>
+            <div class="text-sm text-gray-400">فرعاً علمياً</div>
+        </div>
+        <div class="glass p-6 rounded-3xl text-center" data-aos="fade-up" data-aos-delay="200">
+            <div class="text-4xl font-black text-amber-500 mb-2">4.6B</div>
+            <div class="text-sm text-gray-400">سنة من التاريخ</div>
+        </div>
+        <div class="glass p-6 rounded-3xl text-center" data-aos="fade-up" data-aos-delay="300">
+            <div class="text-4xl font-black text-purple-500 mb-2">100%</div>
+            <div class="text-sm text-gray-400">تغطية المحاضرة</div>
+        </div>
+        <div class="glass p-6 rounded-3xl text-center" data-aos="fade-up" data-aos-delay="400">
+            <div class="text-4xl font-black text-emerald-500 mb-2">CODE</div>
+            <div class="text-sm text-gray-400">بواسطة إسماعيل</div>
+        </div>
+    </section>
+
+    <!-- Definition Section -->
+    <section class="py-32 container mx-auto px-6">
+        <div class="grid lg:grid-cols-2 gap-20 items-center">
+            <div class="order-2 lg:order-1" data-aos="fade-right">
+                <h2 class="text-4xl font-bold font-title mb-8 flex items-center gap-4">
+                    <span class="w-12 h-1 bg-blue-600 rounded-full"></span>
+                    ما هو علم الجيولوجيا؟
+                </h2>
+                <div class="space-y-6 text-lg text-gray-300">
+                    <p class="leading-relaxed">الجيولوجيا هي كلمة مشتقة من اليونانية وتعني <strong>"علم الأرض"</strong>. هي دراسة الكوكب الذي نعيش عليه، من حيث أصله، تاريخه، ومكوناته والعمليات التي تجري في باطنه وعلى سطحه.</p>
+                    <div class="p-6 bg-blue-600/10 border-r-4 border-blue-600 rounded-xl">
+                        <h4 class="font-bold text-blue-400 mb-2">لماذا ندرسها؟</h4>
+                        <p class="text-sm">للبحث عن مصادر الطاقة، التنبؤ بالزلازل والبراكين، وفهم كيف تطور هذا الكوكب عبر مليارات السنين.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="order-1 lg:order-2 grid grid-cols-2 gap-4" data-aos="fade-left">
+                <div class="space-y-4">
+                    <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=400" class="rounded-2xl shadow-2xl" alt="Rocks">
+                    <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=400" class="rounded-2xl shadow-2xl" alt="Mountains">
+                </div>
+                <div class="pt-12 space-y-4">
+                    <img src="https://images.unsplash.com/photo-1521193089946-7aa29d1fe776?w=400" class="rounded-2xl shadow-2xl" alt="Volcano">
+                    <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=400" class="rounded-2xl shadow-2xl" alt="Earth from space">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Branches Grid -->
+    <section id="branches" class="py-32 relative">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-20">
+                <h2 class="text-5xl font-black font-title mb-6" data-aos="zoom-in">الموسوعة الكاملة للأفرع</h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">لقد قمت بتنظيم كافة أفرع الجيولوجيا العشرين المذكورة في المحاضرة لتتمكن من مراجعتها بضغطة واحدة.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Loop for Branches -->
+                <div class="glass p-8 rounded-[2rem] flex flex-col items-center text-center group" data-aos="fade-up">
+                    <div class="w-16 h-16 bg-blue-600/20 rounded-2xl flex items-center justify-center text-blue-500 text-3xl mb-6 group-hover:bg-blue-600 group-hover:text-white transition-all duration-500">
+                        <i class="fa-solid fa-coins"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">الجيولوجيا الاقتصادية</h3>
+                    <p class="text-sm text-gray-500">Economic Geology: استكشاف الثروات المعدنية والخامات ذات القيمة المالية.</p>
+                </div>
+
+                <div class="glass p-8 rounded-[2rem] flex flex-col items-center text-center group" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-16 h-16 bg-amber-600/20 rounded-2xl flex items-center justify-center text-amber-500 text-3xl mb-6 group-hover:bg-amber-600 group-hover:text-white transition-all duration-500">
+                        <i class="fa-solid fa-flask-vial"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">الجيوكيمياء</h3>
+                    <p class="text-sm text-gray-500">Geochemistry: دراسة توزيع العناصر الكيميائية في القشرة وباطن الأرض.</p>
+                </div>
+
+                <div class="glass p-8 rounded-[2rem] flex flex-col items-center text-center group" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-16 h-16 bg-purple-600/20 rounded-2xl flex items-center justify-center text-purple-500 text-3xl mb-6 group-hover:bg-purple-600 group-hover:text-white transition-all duration-500">
+                        <i class="fa-solid fa-bridge"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">الجيولوجيا الهندسية</h3>
+                    <p class="text-sm text-gray-500">Engineering Geology: دراسة الخصائص اللازمة لبناء الكباري والسدود والمنشآت.</p>
+                </div>
+
+                <div class="glass p-8 rounded-[2rem] flex flex-col items-center text-center group" data-aos="fade-up" data-aos-delay="300">
+                    <div class="w-16 h-16 bg-emerald-600/20 rounded-2xl flex items-center justify-center text-emerald-500 text-3xl mb-6 group-hover:bg-emerald-600 group-hover:text-white transition-all duration-500">
+                        <i class="fa-solid fa-droplet"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">الهيدروجيولوجيا</h3>
+                    <p class="text-sm text-gray-500">Hydrogeology: البحث عن المياه الجوفية وطرق استخراجها وجودتها.</p>
+                </div>
+
+                <!-- More branches summarized for space -->
+                <div class="lg:col-span-4 glass p-8 rounded-[2rem] mt-6 flex flex-wrap justify-center gap-6" data-aos="zoom-in">
+                    <span class="px-4 py-2 bg-white/5 rounded-full text-xs hover:bg-blue-600 transition">جيولوجيا البترول</span>
+                    <span class="px-4 py-2 bg-white/5 rounded-full text-xs hover:bg-blue-600 transition">علم الأحافير</span>
+                    <span class="px-4 py-2 bg-white/5 rounded-full text-xs hover:bg-blue-600 transition">الجيولوجيا الكونية</span>
+                    <span class="px-4 py-2 bg-white/5 rounded-full text-xs hover:bg-blue-600 transition">الجيولوجيا الفيزيائية</span>
+                    <span class="px-4 py-2 bg-white/5 rounded-full text-xs hover:bg-blue-600 transition">علم البلورات</span>
+                    <span class="px-4 py-2 bg-white/5 rounded-full text-xs hover:bg-blue-600 transition">الجيولوجيا التاريخية</span>
+                    <span class="px-4 py-2 bg-white/5 rounded-full text-xs hover:bg-blue-600 transition">الجيولوجيا التركيبية</span>
+                    <span class="px-4 py-2 bg-white/5 rounded-full text-xs hover:bg-blue-600 transition">علم الصخور</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Developer Ultra Section -->
+    <section id="developer" class="py-40 relative">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto glass p-12 rounded-[3rem] text-center dev-glow overflow-hidden relative" data-aos="flip-up">
+                <div class="absolute top-0 right-0 p-8 text-blue-500/10 text-9xl">
+                    <i class="fa-solid fa-terminal"></i>
+                </div>
+                
+                <div class="relative z-10">
+                    <div class="w-24 h-24 bg-gradient-to-tr from-blue-600 to-amber-500 rounded-3xl mx-auto mb-8 rotate-12 flex items-center justify-center text-4xl shadow-2xl">
+                        <i class="fa-solid fa-code"></i>
+                    </div>
+                    <h2 class="text-5xl font-black font-title mb-6 leading-tight">
+                        تمت البرمجة بواسطة <br>
+                        <span class="text-blue-500">إسماعيل سيد</span>
+                    </h2>
+                    <p class="text-xl text-gray-400 mb-12 italic">"هذا الموقع صُمم ليكون رفيقك التقني في مراجعة الجيولوجيا بأحدث أساليب الويب."</p>
+                    
+                    <div class="flex justify-center gap-6 mb-12">
+                        <div class="text-center">
+                            <div class="w-12 h-12 bg-white/5 rounded-full flex items-center justify-center mb-2 mx-auto"><i class="fa-brands fa-html5 text-orange-500"></i></div>
+                            <span class="text-[10px] uppercase font-bold text-gray-500">HTML5</span>
+                        </div>
+                        <div class="text-center">
+                            <div class="w-12 h-12 bg-white/5 rounded-full flex items-center justify-center mb-2 mx-auto"><i class="fa-brands fa-css3-alt text-blue-500"></i></div>
+                            <span class="text-[10px] uppercase font-bold text-gray-500">Tailwind</span>
+                        </div>
+                        <div class="text-center">
+                            <div class="w-12 h-12 bg-white/5 rounded-full flex items-center justify-center mb-2 mx-auto"><i class="fa-brands fa-js text-yellow-500"></i></div>
+                            <span class="text-[10px] uppercase font-bold text-gray-500">JavaScript</span>
+                        </div>
+                    </div>
+
+                    <div class="text-4xl font-black text-amber-500 animate-pulse font-title">
+                        كل ما أريده أنا دعوة بالتوفيق ✨
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-10 text-center text-gray-600 border-t border-white/5">
+        <p>جميع الحقوق محفوظة للمبرمج إسماعيل سيد &copy; 2024</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Init AOS
+        AOS.init({ duration: 1000, once: true });
+
+        // Particles Effect
+        particlesJS('particles-js', {
+            particles: {
+                number: { value: 100, density: { enable: true, value_area: 800 } },
+                color: { value: "#3b82f6" },
+                shape: { type: "circle" },
+                opacity: { value: 0.3, random: true },
+                size: { value: 3, random: true },
+                line_linked: { enable: true, distance: 150, color: "#3b82f6", opacity: 0.1, width: 1 },
+                move: { enable: true, speed: 1.5, direction: "none", random: true, straight: false, out_mode: "out" }
+            }
+        });
+
+        // Scroll Progress
+        window.onscroll = function() {
+            let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            let scrolled = (winScroll / height) * 100;
+            document.getElementById("myBar").style.width = scrolled + "%";
+        };
+    </script>
+</body>
+</html>
+
