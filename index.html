@@ -36,7 +36,9 @@
         ::-webkit-scrollbar-thumb { background: #1f2937; border-radius: 10px; }
         ::-webkit-scrollbar-thumb:hover { background: var(--primary); }
 
-        .tab-btn.active { border-bottom: 3px solid var(--primary); color: var(--primary); }
+        .tab-btn { position: relative; padding-bottom: 8px; }
+        .tab-btn.active { color: var(--primary); }
+        .tab-btn.active::after { content: ''; position: absolute; bottom: 0; right: 0; width: 100%; height: 3px; background: var(--primary); border-radius: 10px; }
     </style>
 </head>
 <body>
@@ -71,20 +73,20 @@
                     علم <span class="text-gradient">الجيولوجيا</span> <br> الطبيعية
                 </h1>
                 <p class="text-lg text-gray-400 mb-10 max-w-xl leading-relaxed italic">
-                    أهلاً بكم في المنصة التعليمية الرقمية الشاملة لمقرر G101. قمت ببرمجة هذا المحتوى ليضم كافة تفاصيل المحاضرة الأولى بأسلوب تفاعلي حديث.
+                    موسوعة رقمية شاملة لمقرر G101. قمت ببرمجة هذا المحتوى ليضم كافة تفاصيل المحاضرة الأولى بأسلوب تفاعلي حديث.
                 </p>
                 <div class="flex flex-wrap gap-4">
                     <div class="flex items-center gap-3 bg-white/5 p-4 rounded-2xl border border-white/5">
-                        <i class="fa-solid fa-user-tie text-blue-500"></i>
+                        <i class="fa-solid fa-user-tie text-blue-500 text-xl"></i>
                         <div class="text-xs">
-                            <p class="text-gray-500">أستاذ المادة</p>
+                            <p class="text-gray-500 uppercase font-mono">Lecturer</p>
                             <p class="font-bold">أ.د. رأفت زكي</p>
                         </div>
                     </div>
                     <div class="flex items-center gap-3 bg-white/5 p-4 rounded-2xl border border-white/5">
-                        <i class="fa-solid fa-user-tie text-amber-500"></i>
+                        <i class="fa-solid fa-user-tie text-amber-500 text-xl"></i>
                         <div class="text-xs">
-                            <p class="text-gray-500">أستاذ المادة</p>
+                            <p class="text-gray-500 uppercase font-mono">Lecturer</p>
                             <p class="font-bold">د. أحمد جمعة</p>
                         </div>
                     </div>
@@ -100,106 +102,85 @@
     <!-- Detailed Overview Section (Tabs) -->
     <section id="overview" class="py-20 container mx-auto px-6">
         <div class="glass rounded-[3rem] p-8 md:p-12 shadow-2xl">
-            <div class="flex flex-wrap justify-center gap-4 mb-12 border-b border-white/5 pb-6">
-                <button onclick="showTab('plan')" class="tab-btn active px-6 py-2 font-bold transition">مخطط المقرر</button>
-                <button onclick="showTab('aims')" class="tab-btn px-6 py-2 font-bold transition">الأهداف العامة</button>
-                <button onclick="showTab('ilos')" class="tab-btn px-6 py-2 font-bold transition">نواتج التعلم (ILOs)</button>
-                <button onclick="showTab('schedule')" class="tab-btn px-6 py-2 font-bold transition">جدول المحاضرات</button>
+            <div class="flex flex-wrap justify-center gap-8 mb-12 border-b border-white/5 pb-6">
+                <button onclick="showTab('plan')" class="tab-btn active font-bold transition">مخطط المقرر</button>
+                <button onclick="showTab('aims')" class="tab-btn font-bold transition">الأهداف العامة</button>
+                <button onclick="showTab('ilos')" class="tab-btn font-bold transition">نواتج التعلم (ILOs)</button>
             </div>
 
             <!-- Tab Content: Plan -->
             <div id="plan" class="tab-content space-y-6">
                 <h3 class="text-3xl font-black font-title mb-6">مخطط المقرر G101</h3>
                 <div class="grid md:grid-cols-2 gap-6">
-                    <div class="p-6 bg-white/5 rounded-2xl border border-white/5">
-                        <p class="text-blue-400 text-sm mb-1 uppercase font-mono">Course ID</p>
-                        <p class="text-xl font-bold italic">جيولوجيا طبيعية - Physical Geology (101)</p>
+                    <div class="p-6 bg-white/5 rounded-2xl border border-white/5 glass-card">
+                        <p class="text-blue-400 text-xs mb-1 uppercase font-mono">Course Title</p>
+                        <p class="text-xl font-bold italic">جيولوجيا طبيعية - Physical Geology</p>
                     </div>
-                    <div class="p-6 bg-white/5 rounded-2xl border border-white/5">
-                        <p class="text-blue-400 text-sm mb-1 uppercase font-mono">Academic Year</p>
+                    <div class="p-6 bg-white/5 rounded-2xl border border-white/5 glass-card">
+                        <p class="text-blue-400 text-xs mb-1 uppercase font-mono">Academic Info</p>
                         <p class="text-xl font-bold">الفصل الدراسي الأول 2020 م - قسم الجيولوجيا</p>
                     </div>
                 </div>
-                <div class="p-8 glass rounded-2xl border-r-4 border-r-blue-600">
-                    <h4 class="font-bold mb-4 text-xl">تعريف العلم (Geology)</h4>
-                    <p class="text-gray-400 leading-relaxed">الكلمة تعني دراسة الأرض (Study of the Earth). تهتم بالمواد المكونة للأرض، تراكيبها، والعمليات التي تشكلها. كما تشمل دراسة الكائنات الحية وتغيرات الكوكب عبر الزمن.</p>
+                <div class="p-8 glass rounded-3xl border-r-4 border-r-blue-600">
+                    <h4 class="font-bold mb-4 text-xl flex items-center gap-2">
+                        <i class="fa-solid fa-earth-africa text-blue-500"></i> تعريف العلم (Geology)
+                    </h4>
+                    <p class="text-gray-400 leading-relaxed text-lg">
+                        الكلمة مشتقة من اليونانية وتعني <strong>دراسة الأرض</strong> (Study of the Earth). تهتم بالمواد المكونة للأرض، تراكيبها، والعمليات التي تشكلها، وتطور الكوكب والحياة عبر الزمن.
+                    </p>
                 </div>
             </div>
 
             <!-- Tab Content: Aims -->
             <div id="aims" class="tab-content hidden space-y-4">
                 <h3 class="text-3xl font-black font-title mb-6">الأهداف العامة للمقرر</h3>
-                <ul class="grid md:grid-cols-2 gap-4">
-                    <li class="flex items-center gap-3 p-4 bg-white/5 rounded-xl border border-white/5">
-                        <i class="fa-solid fa-circle-check text-green-500"></i>
-                        <span>معرفة تاريخ الأرض وأصل نشأتها (Earth History & Origin).</span>
-                    </li>
-                    <li class="flex items-center gap-3 p-4 bg-white/5 rounded-xl border border-white/5">
-                        <i class="fa-solid fa-circle-check text-green-500"></i>
-                        <span>فهم العمليات الخارجية والداخلية المؤثرة على القشرة.</span>
-                    </li>
-                    <li class="flex items-center gap-3 p-4 bg-white/5 rounded-xl border border-white/5">
-                        <i class="fa-solid fa-circle-check text-green-500"></i>
-                        <span>استيعاب الحركات البانية للجبال (Orogenic) والقارات.</span>
-                    </li>
-                    <li class="flex items-center gap-3 p-4 bg-white/5 rounded-xl border border-white/5">
-                        <i class="fa-solid fa-circle-check text-green-500"></i>
-                        <span>فهم النشاط الجيولوجي للغلاف الحيوي (Biosphere).</span>
-                    </li>
-                </ul>
-            </div>
-
-            <!-- Tab Content: ILOs -->
-            <div id="ilos" class="tab-content hidden">
-                <h3 class="text-3xl font-black font-title mb-8 italic uppercase">نواتج التعلم المستهدفة (ILOs)</h3>
-                <div class="grid md:grid-cols-2 gap-8">
-                    <div class="space-y-4">
-                        <h4 class="text-amber-500 font-bold border-b border-amber-500/20 pb-2">المعرفة والفهم (a):</h4>
-                        <ul class="text-sm space-y-3 text-gray-400 list-disc list-inside">
-                            <li>التعرف على المفاهيم الأساسية (البنية، الصخور، المعادن، الاقتصادية).</li>
-                            <li>فهم التطور التاريخي الجيولوجي للأرض.</li>
-                            <li>اكتساب فهم للتقييم الاقتصادي لموارد الأرض.</li>
-                        </ul>
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div class="flex items-center gap-4 p-5 bg-white/5 rounded-2xl border border-white/5 hover:border-blue-500/50 transition">
+                        <div class="w-10 h-10 bg-blue-600/20 rounded-lg flex items-center justify-center text-blue-500 font-bold italic">01</div>
+                        <span class="text-gray-300">معرفة تاريخ الأرض وأصل نشأتها (Earth History & Origin).</span>
                     </div>
-                    <div class="space-y-4">
-                        <h4 class="text-blue-500 font-bold border-b border-blue-500/20 pb-2">المهارات الذهنية والعامة (b, d):</h4>
-                        <ul class="text-sm space-y-3 text-gray-400 list-disc list-inside">
-                            <li>التمييز بين أنواع الصخور وحل المشكلات البيئية.</li>
-                            <li>تفسير الجيولوجيا السطحية وتحت السطحية للتنقيب.</li>
-                            <li>العمل الفعال ضمن فريق لإنتاج الخرائط الجيولوجية.</li>
-                        </ul>
+                    <div class="flex items-center gap-4 p-5 bg-white/5 rounded-2xl border border-white/5 hover:border-blue-500/50 transition">
+                        <div class="w-10 h-10 bg-blue-600/20 rounded-lg flex items-center justify-center text-blue-500 font-bold italic">02</div>
+                        <span class="text-gray-300">فهم العمليات الخارجية والداخلية المؤثرة على القشرة.</span>
+                    </div>
+                    <div class="flex items-center gap-4 p-5 bg-white/5 rounded-2xl border border-white/5 hover:border-blue-500/50 transition">
+                        <div class="w-10 h-10 bg-blue-600/20 rounded-lg flex items-center justify-center text-blue-500 font-bold italic">03</div>
+                        <span class="text-gray-300">استيعاب الحركات البانية للجبال (Orogenic) والقارات.</span>
+                    </div>
+                    <div class="flex items-center gap-4 p-5 bg-white/5 rounded-2xl border border-white/5 hover:border-blue-500/50 transition">
+                        <div class="w-10 h-10 bg-blue-600/20 rounded-lg flex items-center justify-center text-blue-500 font-bold italic">04</div>
+                        <span class="text-gray-300">فهم النشاط الجيولوجي للغلاف الحيوي (Biosphere).</span>
                     </div>
                 </div>
             </div>
 
-            <!-- Tab Content: Schedule -->
-            <div id="schedule" class="tab-content hidden overflow-x-auto">
-                <table class="w-full text-right border-collapse">
-                    <thead>
-                        <tr class="bg-blue-600/20 text-blue-400">
-                            <th class="p-4 border border-white/10 font-bold">اليوم</th>
-                            <th class="p-4 border border-white/10 font-bold">الموعد</th>
-                            <th class="p-4 border border-white/10 font-bold">ملاحظات</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr class="border-b border-white/5">
-                            <td class="p-4 font-bold uppercase italic">السبت</td>
-                            <td class="p-4 font-mono">11:00 AM - 12:00 PM</td>
-                            <td class="p-4 text-gray-500 italic text-sm">محاضرة نظري</td>
-                        </tr>
-                        <tr class="border-b border-white/5">
-                            <td class="p-4 font-bold uppercase italic">الإثنين</td>
-                            <td class="p-4 font-mono">11:00 AM - 12:00 PM</td>
-                            <td class="p-4 text-gray-500 italic text-sm">محاضرة نظري</td>
-                        </tr>
-                        <tr class="border-b border-white/5">
-                            <td class="p-4 font-bold uppercase italic">الأربعاء</td>
-                            <td class="p-4 font-mono">10:00 AM - 11:00 AM</td>
-                            <td class="p-4 text-gray-500 italic text-sm">محاضرة نظري</td>
-                        </tr>
-                    </tbody>
-                </table>
+            <!-- Tab Content: ILOs -->
+            <div id="ilos" class="tab-content hidden">
+                <h3 class="text-3xl font-black font-title mb-8 italic">نواتج التعلم المستهدفة (ILOs)</h3>
+                <div class="grid md:grid-cols-2 gap-10">
+                    <div class="space-y-6">
+                        <div class="flex items-center gap-3">
+                            <i class="fa-solid fa-brain text-amber-500"></i>
+                            <h4 class="text-amber-500 font-bold text-xl uppercase tracking-wider">المعرفة والفهم</h4>
+                        </div>
+                        <ul class="space-y-4 text-gray-400">
+                            <li class="flex gap-2"><span class="text-amber-500 font-bold">•</span> التعرف على المفاهيم الأساسية (البنية، الصخور، المعادن، الاقتصادية).</li>
+                            <li class="flex gap-2"><span class="text-amber-500 font-bold">•</span> فهم التطور التاريخي الجيولوجي للأرض.</li>
+                            <li class="flex gap-2"><span class="text-amber-500 font-bold">•</span> اكتساب فهم للتقييم الاقتصادي لموارد الأرض.</li>
+                        </ul>
+                    </div>
+                    <div class="space-y-6">
+                        <div class="flex items-center gap-3">
+                            <i class="fa-solid fa-lightbulb text-blue-500"></i>
+                            <h4 class="text-blue-500 font-bold text-xl uppercase tracking-wider">المهارات الذهنية والعامة</h4>
+                        </div>
+                        <ul class="space-y-4 text-gray-400">
+                            <li class="flex gap-2"><span class="text-blue-500 font-bold">•</span> التمييز بين أنواع الصخور وحل المشكلات البيئية.</li>
+                            <li class="flex gap-2"><span class="text-blue-500 font-bold">•</span> تفسير الجيولوجيا السطحية وتحت السطحية للتنقيب.</li>
+                            <li class="flex gap-2"><span class="text-blue-500 font-bold">•</span> العمل الفعال ضمن فريق لإنتاج الخرائط الجيولوجية.</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -208,131 +189,112 @@
     <section id="branches" class="py-20 relative px-6">
         <div class="container mx-auto">
             <div class="text-center mb-16" data-aos="zoom-in">
-                <h2 class="text-4xl md:text-6xl font-black font-title mb-4 italic uppercase">أفرع الجيولوجيا العشرين</h2>
+                <h2 class="text-4xl md:text-6xl font-black font-title mb-4 italic uppercase tracking-tighter">أفرع الجيولوجيا العشرين</h2>
                 <p class="text-blue-500 font-bold tracking-widest font-mono text-sm uppercase">Comprehensive Branch Database</p>
-                <div class="w-20 h-1 bg-blue-600 mx-auto mt-6 rounded-full"></div>
+                <div class="w-20 h-1.5 bg-gradient-to-l from-blue-600 to-transparent mx-auto mt-6 rounded-full"></div>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Data injection from the PDF -->
+                <!-- Branch Cards (All 20) -->
                 <div class="glass-card p-8 rounded-3xl branch-card border border-white/5 group" data-aos="fade-up">
-                    <span class="text-3xl font-black text-white/10 group-hover:text-blue-600 transition font-mono italic">01</span>
+                    <span class="text-3xl font-black text-white/5 group-hover:text-blue-600 transition font-mono italic">01</span>
                     <h3 class="text-xl font-bold mt-2 mb-3 text-blue-400">الجيولوجيا الاقتصادية</h3>
-                    <p class="text-sm text-gray-400 leading-relaxed">Economic Geology: استكشاف المواد المعدنية والخامات واستخداماتها الاقتصادية.</p>
+                    <p class="text-sm text-gray-500 leading-relaxed">Economic Geology: استكشاف المواد المعدنية والخامات واستخداماتها الاقتصادية.</p>
                 </div>
-
-                <div class="glass-card p-8 rounded-3xl branch-card border border-white/5 group" data-aos="fade-up" data-aos-delay="50">
-                    <span class="text-3xl font-black text-white/10 group-hover:text-blue-600 transition font-mono italic">02</span>
+                <div class="glass-card p-8 rounded-3xl branch-card border border-white/5 group" data-aos="fade-up">
+                    <span class="text-3xl font-black text-white/5 group-hover:text-blue-600 transition font-mono italic">02</span>
                     <h3 class="text-xl font-bold mt-2 mb-3 text-blue-400">الجيولوجيا البيئية</h3>
-                    <p class="text-sm text-gray-400 leading-relaxed">Environmental Geology: دراسة حل المشكلات البيئية والمخاطر الطبيعية.</p>
+                    <p class="text-sm text-gray-500 leading-relaxed">Environmental Geology: دراسة حل المشكلات البيئية والمخاطر الطبيعية.</p>
                 </div>
-
-                <div class="glass-card p-8 rounded-3xl branch-card border border-white/5 group" data-aos="fade-up" data-aos-delay="100">
-                    <span class="text-3xl font-black text-white/10 group-hover:text-blue-600 transition font-mono italic">03</span>
+                <div class="glass-card p-8 rounded-3xl branch-card border border-white/5 group" data-aos="fade-up">
+                    <span class="text-3xl font-black text-white/5 group-hover:text-blue-600 transition font-mono italic">03</span>
                     <h3 class="text-xl font-bold mt-2 mb-3 text-blue-400">الجيوكيمياء</h3>
-                    <p class="text-sm text-gray-400 leading-relaxed">Geochemistry: دراسة الطبيعة الكيميائية للأرض وتوزيع العناصر.</p>
+                    <p class="text-sm text-gray-500 leading-relaxed">Geochemistry: دراسة الطبيعة الكيميائية للأرض وتوزيع العناصر.</p>
                 </div>
-
                 <div class="glass-card p-8 rounded-3xl branch-card border border-white/5 group" data-aos="fade-up">
-                    <span class="text-3xl font-black text-white/10 group-hover:text-blue-600 transition font-mono italic">04</span>
+                    <span class="text-3xl font-black text-white/5 group-hover:text-blue-600 transition font-mono italic">04</span>
                     <h3 class="text-xl font-bold mt-2 mb-3 text-blue-400">الجيولوجيا الهندسية</h3>
-                    <p class="text-sm text-gray-400 leading-relaxed">Engineering Geology: تطبيق الجيولوجيا لضمان سلامة المنشآت الهندسية.</p>
+                    <p class="text-sm text-gray-500 leading-relaxed">Engineering Geology: تطبيق الجيولوجيا لضمان سلامة المنشآت الهندسية.</p>
                 </div>
-
                 <div class="glass-card p-8 rounded-3xl branch-card border border-white/5 group" data-aos="fade-up">
-                    <span class="text-3xl font-black text-white/10 group-hover:text-blue-600 transition font-mono italic">05</span>
+                    <span class="text-3xl font-black text-white/5 group-hover:text-blue-600 transition font-mono italic">05</span>
                     <h3 class="text-xl font-bold mt-2 mb-3 text-blue-400">الجيوفيزياء</h3>
-                    <p class="text-sm text-gray-400 leading-relaxed">Geophysics: استخدام الفيزياء لاستكشاف باطن الأرض والموارد.</p>
+                    <p class="text-sm text-gray-500 leading-relaxed">Geophysics: استخدام الفيزياء لاستكشاف باطن الأرض والموارد.</p>
                 </div>
-
                 <div class="glass-card p-8 rounded-3xl branch-card border border-white/5 group" data-aos="fade-up">
-                    <span class="text-3xl font-black text-white/10 group-hover:text-blue-600 transition font-mono italic">06</span>
+                    <span class="text-3xl font-black text-white/5 group-hover:text-blue-600 transition font-mono italic">06</span>
                     <h3 class="text-xl font-bold mt-2 mb-3 text-blue-400">الجيومورفولوجيا</h3>
-                    <p class="text-sm text-gray-400 leading-relaxed">Geomorphology: دراسة أشكال سطح الأرض ونشأتها وتطورها.</p>
+                    <p class="text-sm text-gray-500 leading-relaxed">Geomorphology: دراسة أشكال سطح الأرض ونشأتها وتطورها.</p>
                 </div>
-
                 <div class="glass-card p-8 rounded-3xl branch-card border border-white/5 group" data-aos="fade-up">
-                    <span class="text-3xl font-black text-white/10 group-hover:text-blue-600 transition font-mono italic">07</span>
+                    <span class="text-3xl font-black text-white/5 group-hover:text-blue-600 transition font-mono italic">07</span>
                     <h3 class="text-xl font-bold mt-2 mb-3 text-blue-400">الهيدروجيولوجيا</h3>
-                    <p class="text-sm text-gray-400 leading-relaxed">Hydrogeology: علم دراسة المياه الجوفية وحركتها وجودتها.</p>
+                    <p class="text-sm text-gray-500 leading-relaxed">Hydrogeology: علم دراسة المياه الجوفية وحركتها وجودتها.</p>
                 </div>
-
                 <div class="glass-card p-8 rounded-3xl branch-card border border-white/5 group" data-aos="fade-up">
-                    <span class="text-3xl font-black text-white/10 group-hover:text-blue-600 transition font-mono italic">08</span>
+                    <span class="text-3xl font-black text-white/5 group-hover:text-blue-600 transition font-mono italic">08</span>
                     <h3 class="text-xl font-bold mt-2 mb-3 text-blue-400">علم الهيدرولوجيا</h3>
-                    <p class="text-sm text-gray-400 leading-relaxed">Hydrology: دراسة المياه السطحية والعمليات الهيدرولوجية العامة.</p>
+                    <p class="text-sm text-gray-500 leading-relaxed">Hydrology: دراسة المياه السطحية والعمليات الهيدرولوجية العامة.</p>
                 </div>
-
                 <div class="glass-card p-8 rounded-3xl branch-card border border-white/5 group" data-aos="fade-up">
-                    <span class="text-3xl font-black text-white/10 group-hover:text-blue-600 transition font-mono italic">09</span>
+                    <span class="text-3xl font-black text-white/5 group-hover:text-blue-600 transition font-mono italic">09</span>
                     <h3 class="text-xl font-bold mt-2 mb-3 text-blue-400">علم المعادن</h3>
-                    <p class="text-sm text-gray-400 leading-relaxed">Mineralogy: دراسة خصائص وتركيب واستخدامات المعادن.</p>
+                    <p class="text-sm text-gray-500 leading-relaxed">Mineralogy: دراسة خصائص وتركيب واستخدامات المعادن.</p>
                 </div>
-
                 <div class="glass-card p-8 rounded-3xl branch-card border border-white/5 group" data-aos="fade-up">
-                    <span class="text-3xl font-black text-white/10 group-hover:text-blue-600 transition font-mono italic">10</span>
+                    <span class="text-3xl font-black text-white/5 group-hover:text-blue-600 transition font-mono italic">10</span>
                     <h3 class="text-xl font-bold mt-2 mb-3 text-blue-400">جيولوجيا التعدين</h3>
-                    <p class="text-sm text-gray-400 leading-relaxed">Mining Geology: علم استخراج الخامات والمعادن الاقتصادية.</p>
+                    <p class="text-sm text-gray-500 leading-relaxed">Mining Geology: علم استخراج الخامات والمعادن الاقتصادية.</p>
                 </div>
-
                 <div class="glass-card p-8 rounded-3xl branch-card border border-white/5 group" data-aos="fade-up">
-                    <span class="text-3xl font-black text-white/10 group-hover:text-blue-600 transition font-mono italic">11</span>
+                    <span class="text-3xl font-black text-white/5 group-hover:text-blue-600 transition font-mono italic">11</span>
                     <h3 class="text-xl font-bold mt-2 mb-3 text-blue-400">الجيولوجيا الكونية</h3>
-                    <p class="text-sm text-gray-400 leading-relaxed">Cosmogeology: دراسة جيولوجيا الأجرام السماوية مثل القمر والكواكب.</p>
+                    <p class="text-sm text-gray-500 leading-relaxed">Cosmogeology: دراسة جيولوجيا الأجرام السماوية مثل القمر والكواكب.</p>
                 </div>
-
                 <div class="glass-card p-8 rounded-3xl branch-card border border-white/5 group" data-aos="fade-up">
-                    <span class="text-3xl font-black text-white/10 group-hover:text-blue-600 transition font-mono italic">12</span>
+                    <span class="text-3xl font-black text-white/5 group-hover:text-blue-600 transition font-mono italic">12</span>
                     <h3 class="text-xl font-bold mt-2 mb-3 text-blue-400">الجيولوجيا البحرية</h3>
-                    <p class="text-sm text-gray-400 leading-relaxed">Marine Geology: دراسة قيعان المحيطات والرسوبيات البحرية.</p>
+                    <p class="text-sm text-gray-500 leading-relaxed">Marine Geology: دراسة قيعان المحيطات والرسوبيات البحرية.</p>
                 </div>
-
                 <div class="glass-card p-8 rounded-3xl branch-card border border-white/5 group" data-aos="fade-up">
-                    <span class="text-3xl font-black text-white/10 group-hover:text-blue-600 transition font-mono italic">13</span>
+                    <span class="text-3xl font-black text-white/5 group-hover:text-blue-600 transition font-mono italic">13</span>
                     <h3 class="text-xl font-bold mt-2 mb-3 text-blue-400">علم الأحافير</h3>
-                    <p class="text-sm text-gray-400 leading-relaxed">Paleontology: دراسة بقايا الكائنات القديمة لفهم تاريخ الأرض.</p>
+                    <p class="text-sm text-gray-500 leading-relaxed">Paleontology: دراسة بقايا الكائنات القديمة لفهم تاريخ الأرض.</p>
                 </div>
-
                 <div class="glass-card p-8 rounded-3xl branch-card border border-white/5 group" data-aos="fade-up">
-                    <span class="text-3xl font-black text-white/10 group-hover:text-blue-600 transition font-mono italic">14</span>
+                    <span class="text-3xl font-black text-white/5 group-hover:text-blue-600 transition font-mono italic">14</span>
                     <h3 class="text-xl font-bold mt-2 mb-3 text-blue-400">جيولوجيا البترول</h3>
-                    <p class="text-sm text-gray-400 leading-relaxed">Petroleum Geology: استكشاف وإنتاج النفط والغاز الطبيعي.</p>
+                    <p class="text-sm text-gray-500 leading-relaxed">Petroleum Geology: استكشاف وإنتاج النفط والغاز الطبيعي.</p>
                 </div>
-
                 <div class="glass-card p-8 rounded-3xl branch-card border border-white/5 group" data-aos="fade-up">
-                    <span class="text-3xl font-black text-white/10 group-hover:text-blue-600 transition font-mono italic">15</span>
+                    <span class="text-3xl font-black text-white/5 group-hover:text-blue-600 transition font-mono italic">15</span>
                     <h3 class="text-xl font-bold mt-2 mb-3 text-blue-400">علم الصخور</h3>
-                    <p class="text-sm text-gray-400 leading-relaxed">Petrology: دراسة أصل وخصائص الصخور (نارية، رسوبية، متحولة).</p>
+                    <p class="text-sm text-gray-500 leading-relaxed">Petrology: دراسة أصل وخصائص الصخور (نارية، رسوبية، متحولة).</p>
                 </div>
-
                 <div class="glass-card p-8 rounded-3xl branch-card border border-white/5 group" data-aos="fade-up">
-                    <span class="text-3xl font-black text-white/10 group-hover:text-blue-600 transition font-mono italic">16</span>
+                    <span class="text-3xl font-black text-white/5 group-hover:text-blue-600 transition font-mono italic">16</span>
                     <h3 class="text-xl font-bold mt-2 mb-3 text-blue-400">علم الرسوبيات</h3>
-                    <p class="text-sm text-gray-400 leading-relaxed">Sedimentology: دراسة الرواسب والعمليات التي تشكل الصخور الرسوبية.</p>
+                    <p class="text-sm text-gray-500 leading-relaxed">Sedimentology: دراسة الرواسب والعمليات التي تشكل الصخور الرسوبية.</p>
                 </div>
-
                 <div class="glass-card p-8 rounded-3xl branch-card border border-white/5 group" data-aos="fade-up">
-                    <span class="text-3xl font-black text-white/10 group-hover:text-blue-600 transition font-mono italic">17</span>
+                    <span class="text-3xl font-black text-white/5 group-hover:text-blue-600 transition font-mono italic">17</span>
                     <h3 class="text-xl font-bold mt-2 mb-3 text-blue-400">علم الطبقات</h3>
-                    <p class="text-sm text-gray-400 leading-relaxed">Stratigraphy: دراسة تتابع طبقات الصخور والارتباط الزمني بينها.</p>
+                    <p class="text-sm text-gray-500 leading-relaxed">Stratigraphy: دراسة تتابع طبقات الصخور والارتباط الزمني بينها.</p>
                 </div>
-
                 <div class="glass-card p-8 rounded-3xl branch-card border border-white/5 group" data-aos="fade-up">
-                    <span class="text-3xl font-black text-white/10 group-hover:text-blue-600 transition font-mono italic">18</span>
+                    <span class="text-3xl font-black text-white/5 group-hover:text-blue-600 transition font-mono italic">18</span>
                     <h3 class="text-xl font-bold mt-2 mb-3 text-blue-400">الجيولوجيا التركيبية</h3>
-                    <p class="text-sm text-gray-400 leading-relaxed">Structural Geology: دراسة الطيات والصدوع وتشوهات القشرة الأرضية.</p>
+                    <p class="text-sm text-gray-500 leading-relaxed">Structural Geology: دراسة الطيات والصدوع وتشوهات القشرة الأرضية.</p>
                 </div>
-
                 <div class="glass-card p-8 rounded-3xl branch-card border border-white/5 group" data-aos="fade-up">
-                    <span class="text-3xl font-black text-white/10 group-hover:text-blue-600 transition font-mono italic">19</span>
+                    <span class="text-3xl font-black text-white/5 group-hover:text-blue-600 transition font-mono italic">19</span>
                     <h3 class="text-xl font-bold mt-2 mb-3 text-blue-400">الجيولوجيا الفيزيائية</h3>
-                    <p class="text-sm text-gray-400 leading-relaxed">Physical Geology: دراسة العمليات التي تؤثر على القشرة (تجوية، زلازل، براكين).</p>
+                    <p class="text-sm text-gray-500 leading-relaxed">Physical Geology: دراسة العمليات التي تؤثر على القشرة (تجوية، زلازل، براكين).</p>
                 </div>
-
                 <div class="glass-card p-8 rounded-3xl branch-card border border-white/5 group" data-aos="fade-up">
-                    <span class="text-3xl font-black text-white/10 group-hover:text-blue-600 transition font-mono italic">20</span>
+                    <span class="text-3xl font-black text-white/5 group-hover:text-blue-600 transition font-mono italic">20</span>
                     <h3 class="text-xl font-bold mt-2 mb-3 text-blue-400">الجيولوجيا التاريخية</h3>
-                    <p class="text-sm text-gray-400 leading-relaxed">Historical Geology: إعادة بناء تاريخ الأرض وتطور الحياة عبر السجل الصخري.</p>
+                    <p class="text-sm text-gray-500 leading-relaxed">Historical Geology: إعادة بناء تاريخ الأرض وتطور الحياة عبر السجل الصخري.</p>
                 </div>
             </div>
         </div>
@@ -341,28 +303,28 @@
     <!-- Developer Ultra Section -->
     <section id="developer" class="py-40 relative px-6 overflow-hidden">
         <div class="container mx-auto">
-            <div class="max-w-5xl mx-auto glass rounded-[4rem] p-12 md:p-20 text-center relative border border-white/10 shadow-[0_0_100px_rgba(59,130,246,0.1)]">
-                <div class="absolute top-0 left-0 w-32 h-32 bg-blue-600/10 blur-[60px]"></div>
+            <div class="max-w-5xl mx-auto glass rounded-[4rem] p-12 md:p-20 text-center relative border border-white/10">
+                <div class="absolute inset-0 bg-blue-600/5 blur-[120px]"></div>
                 
                 <div class="relative z-10">
                     <div class="w-24 h-24 bg-gradient-to-tr from-blue-600 to-indigo-600 rounded-3xl mx-auto mb-10 flex items-center justify-center text-4xl shadow-2xl rotate-12 hover:rotate-0 transition duration-500">
-                        <i class="fa-solid fa-user-gear"></i>
+                        <i class="fa-solid fa-code"></i>
                     </div>
-                    <h2 class="text-5xl md:text-7xl font-black font-title mb-8">
-                        البرمجة بواسطة <br>
-                        <span class="text-blue-500 underline underline-offset-8 decoration-white/10">إسماعيل سيد</span>
+                    <h2 class="text-5xl md:text-7xl font-black font-title mb-8 leading-tight">
+                        تمت البرمجة بواسطة <br>
+                        <span class="text-blue-500">إسماعيل سيد</span>
                     </h2>
                     <p class="text-xl text-gray-400 max-w-2xl mx-auto mb-16 leading-relaxed italic">
-                        "لقد تم استخراج كافة بيانات المحاضرة من الملف الرسمي (محاضرة اوله.pdf) وبناؤها بهذا الشكل التفاعلي لتكون مرجعاً ذكياً وشاملاً."
+                        "لقد قمت ببرمجة هذا المحتوى التعليمي كهدية لزملائي الطلاب لضمان سهولة الوصول لكافة معلومات المحاضرة بأسلوب تقني متميز."
                     </p>
                     
-                    <div class="flex flex-wrap justify-center gap-6 mb-16">
-                        <div class="bg-white/5 px-6 py-3 rounded-2xl border border-white/5 text-xs font-bold font-mono tracking-widest text-blue-400">GEOLOGY v1.0</div>
-                        <div class="bg-white/5 px-6 py-3 rounded-2xl border border-white/5 text-xs font-bold font-mono tracking-widest text-amber-400">FULL PDF COVERAGE</div>
-                        <div class="bg-white/5 px-6 py-3 rounded-2xl border border-white/5 text-xs font-bold font-mono tracking-widest text-emerald-400">INTERACTIVE UI</div>
+                    <div class="flex flex-wrap justify-center gap-6 mb-16 font-mono text-xs font-bold tracking-widest uppercase">
+                        <div class="bg-white/5 px-6 py-3 rounded-2xl border border-white/5 text-blue-400">Lecture Coverage 100%</div>
+                        <div class="bg-white/5 px-6 py-3 rounded-2xl border border-white/5 text-amber-400">Interactive Interface</div>
+                        <div class="bg-white/5 px-6 py-3 rounded-2xl border border-white/5 text-emerald-400">Clean Code</div>
                     </div>
 
-                    <div class="text-5xl font-black text-amber-500 font-title tracking-tighter drop-shadow-lg">
+                    <div class="text-4xl md:text-5xl font-black text-amber-500 font-title drop-shadow-lg">
                         كل ما أريده أنا دعوة بالتوفيق ✨
                     </div>
                 </div>
@@ -373,7 +335,7 @@
     <!-- Footer -->
     <footer class="py-12 text-center text-gray-600 border-t border-white/5 bg-black/40 backdrop-blur-md">
         <p class="text-sm uppercase tracking-widest font-bold">Ismail Sayed Development &copy; 2026</p>
-        <p class="mt-2 text-xs italic opacity-50">Physical Geology G101 - Lecture 01</p>
+        <p class="mt-2 text-xs italic opacity-40">Physical Geology G101 - Digital Learning Initiative</p>
     </footer>
 
     <!-- Scripts -->
@@ -384,13 +346,13 @@
 
         particlesJS('particles-js', {
             particles: {
-                number: { value: 80, density: { enable: true, value_area: 800 } },
+                number: { value: 60, density: { enable: true, value_area: 800 } },
                 color: { value: "#3b82f6" },
                 shape: { type: "circle" },
                 opacity: { value: 0.2, random: true },
                 size: { value: 2, random: true },
                 line_linked: { enable: true, distance: 150, color: "#3b82f6", opacity: 0.1, width: 1 },
-                move: { enable: true, speed: 1 }
+                move: { enable: true, speed: 1.2 }
             }
         });
 
@@ -405,7 +367,7 @@
             document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
             document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
             document.getElementById(id).classList.remove('hidden');
-            event.target.classList.add('active');
+            event.currentTarget.classList.add('active');
         }
     </script>
 </body>
